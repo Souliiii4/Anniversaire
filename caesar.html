@@ -77,6 +77,7 @@
   </div>
 
   <script>
+    // Fonction de chiffrement/déchiffrement César
     function cesar(mode) {
       const text = document.getElementById('inputText').value;
       let shift = parseInt(document.getElementById('shift').value) % 26;
@@ -98,6 +99,15 @@
 
       document.getElementById('output').innerText = result || '---';
     }
+
+    // Dès que la page est chargée, on regarde si un message est passé en paramètre et on le colle
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const message = params.get('message');
+      if (message) {
+        document.getElementById('inputText').value = decodeURIComponent(message);
+      }
+    });
   </script>
 </body>
 </html>
